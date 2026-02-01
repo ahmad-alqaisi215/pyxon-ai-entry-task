@@ -18,4 +18,8 @@ class PyxonDocxParser(BaseParser):
 
         content = "\n".join(paragraphs)
 
-        return Document(page_content=content, metadata={"source": str(self._file_path)})
+        self._doc = Document(
+            page_content=content, metadata={"source": str(self._file_path)}
+        )
+
+        return self._doc

@@ -20,6 +20,8 @@ class BaseParser(ABC):
             )
 
         self._file_path = file_path
+        self._doc = Document(page_content="")
+
         super().__init__()
 
     @abstractmethod

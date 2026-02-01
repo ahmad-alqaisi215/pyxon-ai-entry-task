@@ -17,6 +17,8 @@ class PyxonPDFParser(BaseParser):
 
         pages = [page.extract_text() for page in pdf_reader.pages]
 
-        return Document(
+        self._doc = Document(
             page_content="\n".join(pages), metadata={"source": str(self._file_path)}
         )
+
+        return self._doc

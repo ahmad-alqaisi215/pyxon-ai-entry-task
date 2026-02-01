@@ -15,4 +15,7 @@ class PyxonTxtParser(BaseParser):
 
         content = self._file_path.read_text()
 
-        return Document(page_content=content, metadata={"source": str(self._file_path)})
+        self._doc = Document(
+            page_content=content, metadata={"source": str(self._file_path)}
+        )
+        return self._doc
