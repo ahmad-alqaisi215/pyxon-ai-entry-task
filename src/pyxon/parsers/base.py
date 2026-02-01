@@ -5,7 +5,7 @@ from langchain_core.documents import Document
 
 
 class BaseParser(ABC):
-    SUPPORTED_EXTENSIONS: list[str] = ["doc", "docx", "pdf", "txt"]
+    SUPPORTED_EXTENSIONS: list[str] = []
 
     def __init__(self, file_path: Path):
         if not file_path.exists():
