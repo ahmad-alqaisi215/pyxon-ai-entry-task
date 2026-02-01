@@ -11,9 +11,10 @@
    hardcoded words or signals to select chunker type based on, but this
    will fail and require extensive analysis and domain knowledge.
 
-   Well, we can choose one single chunking mechanisim that handels boath, but since
-   the task describtion forces me to do this decision automaticly, 
+   Well, we can choose one single chunking mechanisim that handels boath, but
+   since the task describtion forces me to do this decision manually, I'll avoid 
+   doing this :) 
 
 
-   I'll go forward with simple decision, paragraph len variation, due to deadline
+   I'll go forward with simple thresholding mecha, paragraph len variation, due to deadline
    limitation.
