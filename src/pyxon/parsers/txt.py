@@ -1,9 +1,11 @@
+# src.pyxon.parsers.txt
+
 from langchain_core.documents import Document
 
 from src.pyxon.parsers.base import BaseParser
 
 
-class PyxonTextParser(BaseParser):
+class PyxonTxtParser(BaseParser):
     SUPPORTED_EXTENSIONS: list[str] = [".txt"]
 
     def __init__(self, file_path):
