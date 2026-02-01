@@ -9,3 +9,10 @@ dependencies = [
     "langchain>=1.2.7",
     "pypdf>=6.6.2",
 ]
+
+[dependency-groups]
+dev = [
+    "black>=26.1.0",
+    "isort>=7.0.0",
+    "ruff>=0.14.14",
+]
