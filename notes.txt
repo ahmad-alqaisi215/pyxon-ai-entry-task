@@ -1,3 +1,19 @@
-1. .doc is unsupported by python-docx, so we only handle 
+1. .doc is unsupported by python-docx, so I only handle 
    .docx and will note this as an assumption in the PR.
 
+2. for chunker type [FIXED, DECISION]. There is many approaches to chose based 
+   on like # of imgs, headers, tables there, paragraph variation coefficient or 
+   even embedding variation and etc. However, and due to task limitation of pkgs 
+   to use (e.g., pypdf, python-docx), these existing parsers are too weak to capture
+   document layout, and due to task limitation and infra limitation I cant
+   go with layout aware parser (e.g., marker, DPT, lamaindex, ...) locally
+   on my machine maybe we just go and aanlyze docuemnt text and search for
+   hardcoded words or signals to select chunker type based on, but this
+   will fail and require extensive analysis and domain knowledge.
+
+   Well, we can choose one single chunking mechanisim that handels boath, but since
+   the task describtion forces me to do this decision automaticly, 
+
+
+   I'll go forward with simple decision, paragraph len variation, due to deadline
+   limitation.
