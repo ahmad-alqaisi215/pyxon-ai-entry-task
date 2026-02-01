@@ -1,6 +1,5 @@
 # src.pyxon.parsers.docx
 
-from pathlib import Path
 from docx import Document as DocxDocument
 from langchain_core.documents import Document
 

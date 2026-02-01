@@ -9,5 +9,3 @@ isort ./
 
 echo "Running ruff..."
 ruff check ./
-
-echo "All checks passed."
