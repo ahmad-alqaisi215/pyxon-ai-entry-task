@@ -1,59 +1,63 @@
+# src.pyxon.storage.vs
+
 from typing import List
 
-from langchain_community.vectorstores import Pinecone
+from dotenv import load_dotenv
 from langchain_core.documents import Document
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai import OpenAIEmbeddings
+from langchain_pinecone import PineconeVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from pinecone import Pinecone
 
 from src.pyxon.config import Settings
 
-index_name = "pyxon-docs"
-
-_embedding_func = OpenAIEmbeddings(model=Settings.EMBEDDING_MODEL_NAME)
-_vs = Pinecone.from_existing_index(
-    index_name=Settings.INDEX_NAME, embedding=_embedding_func
-)
+load_dotenv()
 
 
-def get_vs() -> Pinecone:
-    return _vs
+class VectorStore:
+    def __init__(self):
+        self.index_name = Settings.INDEX
 
-
-def chunk_document(doc: Document):
-    chunker = _get_chunker(doc)
-    return chunker.split_documents([doc])
-
-
-def _get_chunker(doc: Document):
-    if doc.metadata["chunking_strategy"] == "FIXED":
-        return RecursiveCharacterTextSplitter(
-            chunk_size=doc.metadata["chunk_size"],
-            chunk_overlap=doc.metadata["chunk_overlap"],
+        self.embedding_func = OpenAIEmbeddings(
+            model=Settings.EMBEDDING_MODEL_NAME,
+            api_key=Settings.OPENAI_API_KEY,
+            dimensions=Settings.DIMENSIONS,
         )
 
-    return SemanticChunker(
-        _embedding_func, breakpoint_threshold_type="standard_deviation"
-    )
+        self.pc = Pinecone(api_key=Settings.PINECONE_API_KEY)
 
-
-def add_documents(docs: List[Document], document_id: str):
-    texts = [d.page_content for d in docs]
-    metadatas = []
-
-    for i, doc in enumerate(docs):
-        metadatas.append(
-            {
-                "source": doc.metadata["source"],
-                "document_id": document_id,
-                "chunk_index": i,
-                "total_chunks": len(docs),
-                "chunking_strategy": doc.metadata.get("chunking_strategy"),
-            }
+        self._vs = PineconeVectorStore(
+            index=self.pc.Index(self.index_name),
+            embedding=self.embedding_func,
         )
 
-    ids = [f"{document_id}_{i}" for i in range(len(docs))]
+    def chunk_document(self, doc: Document) -> List[Document]:
+        chunker = self._get_chunker(doc)
+        return chunker.split_documents([doc])
 
-    _vs.add_texts(texts=texts, metadatas=metadatas, ids=ids)
+    def _get_chunker(self, doc: Document):
+        if doc.metadata.get("chunking_strategy") == "FIXED":
+            return RecursiveCharacterTextSplitter(
+                chunk_size=doc.metadata.get("chunk_size"),
+                chunk_overlap=doc.metadata.get("chunk_overlap"),
+            )
 
-    return ids
+        return SemanticChunker(
+            self.embedding_func,
+        )
+
+    def add_documents(self, chunks: List[Document], document_id: str):
+        for i, chunk in enumerate(chunks):
+            chunk.metadata.update(
+                {
+                    "document_id": document_id,
+                    "chunk_index": i,
+                    "total_chunks": len(chunks),
+                }
+            )
+
+        self._vs.add_documents(chunks)
+
+    def get_retriever(self):
+        return self._vs.as_retriever()

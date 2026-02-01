@@ -24,4 +24,8 @@ def parse_document(file_path: str | Path) -> Document:
         )
 
     parser = _REGISTRY[ext](file_path=path)
-    return parser.parse()
+
+    doc = parser.parse()
+    parser.get_chunker_type()
+
+    return doc

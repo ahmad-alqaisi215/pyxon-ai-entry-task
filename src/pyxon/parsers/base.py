@@ -32,19 +32,17 @@ class BaseParser(ABC):
         pass
 
     def get_chunker_type(self):
-        paragraphs = self._doc.page_content.split("\n\n")
-
-        if len(paragraphs) <= 1:
-            return "FIXED"
+        paragraphs = self._doc.page_content.split("\n")
 
         paragraphs_len = np.array([len(p) for p in paragraphs])
+
         std = paragraphs_len.std()
         mean = paragraphs_len.mean()
 
         self._doc.metadata["chunk_size"] = int(mean)
-        self._doc.metadata["chunk_overlap"] = mean * Settings.CHUNK_OVERLAP
+        self._doc.metadata["chunk_overlap"] = float(mean * Settings.CHUNK_OVERLAP)
 
-        if mean == 0:
+        if mean == 0 or len(paragraphs) <= 1:
             self._doc.metadata["chunking_strategy"] = "FIXED"
             return "FIXED"
 
