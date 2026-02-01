@@ -17,7 +17,7 @@ class BaseParser(ABC):
                 f"'{file_path.suffix}'. Supported: {self.SUPPORTED_EXTENSIONS}"
             )
 
-        self._path = file_path
+        self._file_path = file_path
         super().__init__()
 
     @abstractmethod
