@@ -3,7 +3,10 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+import numpy as np
 from langchain_core.documents import Document
+
+from src.pyxon.config import Settings
 
 
 class BaseParser(ABC):
@@ -27,3 +30,23 @@ class BaseParser(ABC):
     @abstractmethod
     def parse(self) -> Document:
         pass
+
+    def get_chunker_type(self):
+        paragraphs = self._doc.page_content.split("\n\n")
+
+        if len(paragraphs) <= 1:
+            return "FIXED"
+
+        paragraphs_len = np.array([len(p) for p in paragraphs])
+        std = paragraphs_len.std()
+        mean = paragraphs_len.mean()
+
+        if mean == 0:
+            return "FIXED"
+
+        cv = std / mean
+
+        if cv < Settings.PARAGRAPH_Variation_THRESH:
+            return "FIXED"
+        else:
+            return "DYNAMIC"
