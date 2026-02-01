@@ -1,6 +1,3 @@
-def main():
-    print("Hello from pyxon-ai-entry-task!")
+from src.pyxon.parsers import parse_document
 
-
-if __name__ == "__main__":
-    main()
+print(parse_document("/home/amq/Downloads/AhmadAlqaisi_Resume_AI.pdf").page_content)
