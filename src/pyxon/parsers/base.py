@@ -41,12 +41,18 @@ class BaseParser(ABC):
         std = paragraphs_len.std()
         mean = paragraphs_len.mean()
 
+        self._doc.metadata["chunk_size"] = int(mean)
+        self._doc.metadata["chunk_overlap"] = mean * Settings.CHUNK_OVERLAP
+
         if mean == 0:
+            self._doc.metadata["chunking_strategy"] = "FIXED"
             return "FIXED"
 
         cv = std / mean
 
         if cv < Settings.PARAGRAPH_Variation_THRESH:
+            self._doc.metadata["chunking_strategy"] = "FIXED"
             return "FIXED"
         else:
+            self._doc.metadata["chunking_strategy"] = "DYNAMIC"
             return "DYNAMIC"
