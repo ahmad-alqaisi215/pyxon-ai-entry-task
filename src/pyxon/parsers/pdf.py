@@ -1,7 +1,7 @@
 # src.pyxon.parsers.pdf
 
-from pypdf import PdfReader
 from langchain_core.documents import Document
+from pypdf import PdfReader
 
 from src.pyxon.parsers.base import BaseParser
 
@@ -17,4 +17,6 @@ class PyxonPDFParser(BaseParser):
 
         pages = [page.extract_text() for page in pdf_reader.pages]
 
-        return Document(page_content='\n'.join(pages), metadata={"source": str(self._file_path)})
+        return Document(
+            page_content="\n".join(pages), metadata={"source": str(self._file_path)}
+        )
