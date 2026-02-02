@@ -10,7 +10,7 @@ from langchain_pinecone import PineconeVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pinecone import Pinecone
 
-from src.pyxon.config import Settings
+from src.config import Settings
 
 load_dotenv()
 

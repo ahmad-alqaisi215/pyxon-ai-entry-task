@@ -6,7 +6,7 @@ from pathlib import Path
 from langchain_core.documents import Document
 from llama_cloud import AsyncLlamaCloud
 
-from src.pyxon.config import Settings
+from src.config import Settings
 from src.pyxon.parsers.base import BaseParser
 from src.pyxon.parsers.txt import PyxonTxtParser
 

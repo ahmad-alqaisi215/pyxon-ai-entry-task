@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import create_engine, pool
 
 from alembic import context
-from src.pyxon.config import Settings
+from src.config import Settings
 from src.pyxon.storage.database.database import Base
 
 config = context.config

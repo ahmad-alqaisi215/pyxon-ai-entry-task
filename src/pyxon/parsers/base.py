@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 from langchain_core.documents import Document
 
-from src.pyxon.config import Settings
+from src.config import Settings
 
 
 class BaseParser(ABC):
