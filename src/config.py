@@ -15,6 +15,7 @@ class Settings:
     INDEX: str = "pyxon"
 
     EMBEDDING_MODEL_NAME: str = "text-embedding-3-large"
+    CROSS_ENCODER_MODEL_NAME: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     DIMENSIONS: int = 1024
     CHUNK_OVERLAP: float = 0.2
     PINECONE_API_KEY: str = os.environ.get("PINECONE_API_KEY")

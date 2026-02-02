@@ -59,7 +59,7 @@ class VectorStore:
 
         self._vs.add_documents(chunks)
 
-    def get_retriever(self):
+    def get_retriever(self) -> PineconeVectorStore:
         return self._vs.as_retriever()
     
     def get_all_chunks(self) -> List[Document]:
