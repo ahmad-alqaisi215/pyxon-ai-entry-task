@@ -19,3 +19,4 @@ class Settings:
     CHUNK_OVERLAP: float = 0.2
     PINECONE_API_KEY: str = os.environ.get("PINECONE_API_KEY")
     OPENAI_API_KEY: str = os.environ.get("OPENAI_API_KEY")
+    DATABASE_URL: str = os.environ.get("DATABASE_URL")
