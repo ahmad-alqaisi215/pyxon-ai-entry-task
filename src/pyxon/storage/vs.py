@@ -9,6 +9,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pinecone import Pinecone
+from langchain_core.vectorstores import  VectorStoreRetriever
 
 from src.config import Settings
 
@@ -59,7 +60,7 @@ class VectorStore:
 
         self._vs.add_documents(chunks)
 
-    def get_retriever(self) -> PineconeVectorStore:
+    def get_retriever(self) -> VectorStoreRetriever:
         return self._vs.as_retriever()
     
     def get_all_chunks(self) -> List[Document]:
