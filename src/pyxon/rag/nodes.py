@@ -22,7 +22,9 @@ _vs = VectorStore()._vs
 _reranker = CrossEncoderReranker()
 _llm = ChatGroq(model=Settings.LLM_MODEL_NAME)
 
-def retrieve(state: AgentState) -> AgentState:
+def retrieve_node(state: AgentState) -> AgentState:
+    state['iteration'] += 1
+    
     if len(state["queries"]) == 0:
         state["queries"].append(state['messages'][-1].content)
 
@@ -44,21 +46,7 @@ def retrieve(state: AgentState) -> AgentState:
 
     return state
 
-tst = AgentState(
-    messages=[HumanMessage(content="What is the role of Ahmad Alqaisi in Cyber robot company?")],
-    queries=[], 
-    critiques=[],                    
-    iteration=0,                     
-    should_continue=False,           
-    retrieved_docs=[],               
-    reranked_docs=[],                
-    top_k=5,                         
-    similarity_score_threshold=0.5,  
-    metadata_filter=None,            
-    answer=""                        
-)
-
-def rerank(state: AgentState) -> AgentState:
+def rerank_node(state: AgentState) -> AgentState:
     top_k = state.get("top_k", Settings.TOP_K)
     query = state["queries"][-1]
 
@@ -70,7 +58,7 @@ def rerank(state: AgentState) -> AgentState:
     return state
 
 
-def reflect(state: AgentState) -> AgentState:
+def reflect_node(state: AgentState) -> AgentState:
     queries = state.get("queries", [])
     critiques = state.get("critiques", [])
     docs = state.get("reranked_docs", [])
@@ -112,7 +100,7 @@ def reflect(state: AgentState) -> AgentState:
     return state
 
 
-def rewrite_query(state: AgentState) -> AgentState:
+def rewrite_query_node(state: AgentState) -> AgentState:
     original_question = state['messages'][-1].content
     latest_critique = state["critiques"][-1]
 
@@ -132,7 +120,7 @@ def rewrite_query(state: AgentState) -> AgentState:
     return state
 
 
-def generate(state: AgentState) -> AgentState:
+def generate_node(state: AgentState) -> AgentState:
     question = state["messages"][-1].content if state["messages"] else ""
 
     if state["reranked_docs"]:

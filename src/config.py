@@ -28,5 +28,5 @@ class Settings:
     PERCENTILE_THRESH: float = 0.9
     TOP_K: int = 5
     SIMILARITY_THRESHOLD: float = 0.8
-    MAX_RAG_ITERATIONS: int = 3
+    MAX_RAG_ITERATIONS: int = 6
 
