@@ -36,6 +36,7 @@ class Settings:
     DATABASE_URL: str = _get_secret("DATABASE_URL")
     LLAMAINDEX_API_KEY: str = _get_secret("LLAMAINDEX_API_KEY")
     LANGSMITH_API_KEY: str = _get_secret("LANGSMITH_API_KEY")
+    GROQ_API_KEY: str = _get_secret("GROQ_API_KEY")
 
     PERCENTILE_THRESH: float = 0.9
     TOP_K: int = 5

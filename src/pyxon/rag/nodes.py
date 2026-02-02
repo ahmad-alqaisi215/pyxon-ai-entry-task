@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 _vs = VectorStore()._vs
 _reranker = CrossEncoderReranker()
-_llm = ChatGroq(model=Settings.LLM_MODEL_NAME)
+_llm = ChatGroq(model=Settings.LLM_MODEL_NAME, api_key=Settings.GROQ_API_KEY)
 
 def retrieve_node(state: AgentState) -> AgentState:
     state['iteration'] += 1
