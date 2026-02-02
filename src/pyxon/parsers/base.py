@@ -40,7 +40,7 @@ class BaseParser(ABC):
         mean = paragraphs_len.mean()
 
         self._doc.metadata["chunk_size"] = int(mean)
-        self._doc.metadata["chunk_overlap"] = float(mean * Settings.CHUNK_OVERLAP)
+        self._doc.metadata["chunk_overlap"] = int(mean * Settings.CHUNK_OVERLAP)
 
         if mean == 0 or len(paragraphs) <= 1:
             self._doc.metadata["chunking_strategy"] = "FIXED"
