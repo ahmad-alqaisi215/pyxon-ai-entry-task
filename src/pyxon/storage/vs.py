@@ -44,7 +44,7 @@ class VectorStore:
             )
 
         return SemanticChunker(
-            self.embedding_func,
+            self.embedding_func, breakpoint_threshold_amount=Settings.PERCENTILE_THRESH
         )
 
     def add_documents(self, chunks: List[Document], document_id: str):

@@ -48,7 +48,7 @@ class BaseParser(ABC):
 
         cv = std / mean
 
-        if cv < Settings.PARAGRAPH_Variation_THRESH:
+        if cv < Settings.PARAGRAPH_VARIATION_THRESH:
             self._doc.metadata["chunking_strategy"] = "FIXED"
             return "FIXED"
         else:

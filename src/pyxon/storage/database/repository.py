@@ -34,7 +34,6 @@ class DocumentRepository:
                 doc_id=doc_id,
                 chunk_index=chunk_data.chunk_index,
                 chunk_text=chunk_data.chunk_text,
-                vector_id=chunk_data.vector_id,
             )
             self.db.add(db_chunk)
             db_chunks.append(db_chunk)

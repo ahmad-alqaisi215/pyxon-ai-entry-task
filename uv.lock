@@ -1170,6 +1170,23 @@ wheels = [
 ]
 
 [[package]]
+name = "llama-cloud"
+version = "1.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "distro" },
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "sniffio" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/70/f8/4d0797cc509a45901c71d0de53989fb47b90d0e014eb2294afea8e4d5ebb/llama_cloud-1.2.0.tar.gz", hash = "sha256:2db1655ed92f0057a1af6bc5e0ba3b228b4bc877ce9a957bf5b854e6a4ae1d23", size = 2275955, upload-time = "2026-01-30T21:32:27.366Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/64/ec/033fb749838dab73379726e637bdca720771d54abed49ce228f5022e61e9/llama_cloud-1.2.0-py3-none-any.whl", hash = "sha256:d63858f4e4eadb3d3b955d821e6ec8d055751374778eb792412af834c4a518f0", size = 384907, upload-time = "2026-01-30T21:32:25.695Z" },
+]
+
+[[package]]
 name = "lxml"
 version = "6.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2335,6 +2352,7 @@ dependencies = [
     { name = "langchain" },
     { name = "langchain-experimental" },
     { name = "langchain-pinecone" },
+    { name = "llama-cloud" },
     { name = "pypdf" },
     { name = "python-docx" },
     { name = "sqlalchemy" },
@@ -2356,6 +2374,7 @@ requires-dist = [
     { name = "langchain", specifier = ">=1.2.7" },
     { name = "langchain-experimental", specifier = ">=0.4.1" },
     { name = "langchain-pinecone" },
+    { name = "llama-cloud", specifier = ">=1.2.0" },
     { name = "pypdf", specifier = ">=6.6.2" },
     { name = "python-docx", specifier = ">=1.2.0" },
     { name = "sqlalchemy", specifier = ">=2.0.46" },

@@ -18,3 +18,6 @@
 
    I'll go forward with simple thresholding mecha, paragraph len variation, due to deadline
    limitation.
+
+3. Ive used multilingual `text-embedding-3-large` embed model, so no need for extra efforts
+   on normalizing arabic text
