@@ -61,3 +61,7 @@ class VectorStore:
 
     def get_retriever(self):
         return self._vs.as_retriever()
+    
+    def get_all_chunks(self) -> List[Document]:
+        return self._vs.similarity_search("", k=100000000000)
+
