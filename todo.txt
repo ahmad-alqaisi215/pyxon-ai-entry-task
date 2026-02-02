@@ -6,4 +6,8 @@
 - [v] Arabic language support
 - [v] Arabic diacritics support
 - [] Benchmark suite
-- [] RAG integration ready
+- [v] RAG integration ready
+- [] frontend
+-----------------------
+- [] Why Pinecone?
+- [] C4 models
