@@ -2,7 +2,6 @@
 
 from typing import List
 
-from dotenv import load_dotenv
 from langchain_core.documents import Document
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai import OpenAIEmbeddings
@@ -12,8 +11,6 @@ from pinecone import Pinecone
 from langchain_core.vectorstores import  VectorStoreRetriever
 
 from src.config import Settings
-
-load_dotenv()
 
 
 class VectorStore:

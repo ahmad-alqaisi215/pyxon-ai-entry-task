@@ -2,9 +2,20 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from dotenv import load_dotenv
+try:
+    import streamlit as st
+    _has_streamlit = True
+except ImportError:
+    _has_streamlit = False
 
-load_dotenv()
+
+def _get_secret(key: str, default: str = None) -> str:
+    value = os.environ.get(key)
+    if value:
+        return value
+    if _has_streamlit and key in st.secrets:
+        return st.secrets[key]
+    return default
 
 
 @dataclass
@@ -19,14 +30,14 @@ class Settings:
     LLM_MODEL_NAME: str = "llama-3.3-70b-versatile"
     DIMENSIONS: int = 1024
     CHUNK_OVERLAP: float = 0.2
-    PINECONE_API_KEY: str = os.environ.get("PINECONE_API_KEY")
-    OPENAI_API_KEY: str = os.environ.get("OPENAI_API_KEY")
-    DATABASE_URL: str = os.environ.get("DATABASE_URL")
-    LLAMAINDEX_API_KEY = os.environ.get("LLAMAINDEX_API_KEY")
-    LANGSMITH_API_KEY: str = os.environ.get("LANGSMITH_API_KEY")
+    
+    PINECONE_API_KEY: str = _get_secret("PINECONE_API_KEY")
+    OPENAI_API_KEY: str = _get_secret("OPENAI_API_KEY")
+    DATABASE_URL: str = _get_secret("DATABASE_URL")
+    LLAMAINDEX_API_KEY: str = _get_secret("LLAMAINDEX_API_KEY")
+    LANGSMITH_API_KEY: str = _get_secret("LANGSMITH_API_KEY")
 
     PERCENTILE_THRESH: float = 0.9
     TOP_K: int = 5
     SIMILARITY_THRESHOLD: float = 0.8
     MAX_RAG_ITERATIONS: int = 6
-
