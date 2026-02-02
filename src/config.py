@@ -20,14 +20,18 @@ def _get_secret(key: str, default: str = None) -> str:
 
 @dataclass
 class Settings:
-    DATA: Path = Path(__file__).parent.parent.parent / "data"
-
+    DATA: Path = Path(__file__).parent.parent / "data"
+    TESTS = DATA / 'tests'
+    TESTSET = TESTS / 'testset.csv'
+    
     PARAGRAPH_VARIATION_THRESH: float = 0.2
     INDEX: str = "pyxon"
 
     EMBEDDING_MODEL_NAME: str = "text-embedding-3-large"
     CROSS_ENCODER_MODEL_NAME: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     LLM_MODEL_NAME: str = "llama-3.3-70b-versatile"
+    TEST_MODEL: str = "gpt-4o-mini"
+
     DIMENSIONS: int = 1024
     CHUNK_OVERLAP: float = 0.2
     
@@ -42,3 +46,5 @@ class Settings:
     TOP_K: int = 5
     SIMILARITY_THRESHOLD: float = 0.8
     MAX_RAG_ITERATIONS: int = 6
+
+    TESTSET_SIZE: int = 10
