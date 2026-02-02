@@ -1,7 +1,5 @@
 # src.pyxon.rag.nodes
 import json
-from functools import partial
-from typing import Dict, Callable
 from uuid import UUID
 
 from langchain_core.messages import AIMessage, HumanMessage
@@ -15,7 +13,6 @@ from src.pyxon.storage.vs import VectorStore
 from src.config import Settings
 from src.pyxon.rag.prompts import (
     GENERATION_PROMPT,
-    PARAMETER_ADJUSTMENT_PROMPT,
     QUERY_REWRITE_PROMPT,
     REFLECTION_PROMPT,
 )
