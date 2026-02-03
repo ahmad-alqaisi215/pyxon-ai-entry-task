@@ -2,6 +2,8 @@
 
 A production-grade Retrieval-Augmented Generation (RAG) system for intelligent document analysis with self-reflective retrieval and cross-encoder reranking.
 
+**Live Demo:** [Try Pyxon AI](https://ahmad-alqaisi215-pyxon-ai-entry-task-main-dev-ektxza.streamlit.app/)
+
 ---
 
 ## Performance Metrics
