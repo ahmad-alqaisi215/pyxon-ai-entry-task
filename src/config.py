@@ -10,9 +10,6 @@ except ImportError:
 
 
 def _get_secret(key: str, default: str = None) -> str:
-    value = os.environ.get(key)
-    if value:
-        return value
     if _has_streamlit and key in st.secrets:
         return st.secrets[key]
     return default
