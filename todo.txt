@@ -5,9 +5,6 @@
 - [v] SQL DB integration
 - [v] Arabic language support
 - [v] Arabic diacritics support
-- [] Benchmark suite
+- [v] Benchmark suite
 - [v] RAG integration ready
-- [] frontend
------------------------
-- [] Why Pinecone?
-- [] C4 models
+- [v] frontend
