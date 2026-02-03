@@ -78,7 +78,7 @@ Vector database (Pinecone) for semantic search combined with SQL (SQLite) for me
 
 ```bash
 # Clone repository
-git clone <repo-url>
+git clone https://github.com/ahmad-alqaisi215/pyxon-ai-entry-task
 cd pyxon-ai-entry-task
 
 # Install dependencies
