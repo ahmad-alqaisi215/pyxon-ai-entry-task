@@ -14,7 +14,8 @@ llm = llm_factory(Settings.TEST_MODEL, client=client)
 embedding_func = OpenAIEmbeddings(client, Settings.EMBEDDING_MODEL_NAME)
 
 testset_generator = TestsetGenerator(llm, embedding_func)
-docs = [doc for doc in _vs.get_all_chunks() if len(doc.page_content.split(' ')) > 50 ]
+docs = _vs.get_all_chunks()
+
 testset = testset_generator.generate_with_langchain_docs(docs, testset_size=Settings.TESTSET_SIZE)
 
 testset.to_csv(Settings.TESTSET)
